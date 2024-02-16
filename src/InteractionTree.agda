@@ -42,6 +42,11 @@ open Bind public
 return : A → ITree E A
 return x = Ret x
 
+trigger : E R → ITree E R
+trigger e = Vis e λ x → itree (Ret x)
+
+∞trigger : E R → ∞ITree E R
+tree (∞trigger e) = Vis e (λ x → itree (Ret x))
 
 -- Functor, Applicative and Monad which are all defined by the monad laws.
 open RawFunctor
@@ -60,3 +65,4 @@ ITreeMonad = record {
   rawApplicative = ITreeApplicative
   ; _>>=_ = Bind._>>=_
   }
+
