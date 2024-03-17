@@ -48,7 +48,7 @@ trigger e = Vis e λ x → itree (Ret x)
 ∞trigger : E R → ∞ITree E R
 tree (∞trigger e) = Vis e (λ x → itree (Ret x))
 
--- Functor, Applicative and Monad which are all defined by the monad laws.
+-- Functor, Applicative and Monad which are all defined by the monad operations.
 open RawFunctor
 ITreeFunctor : RawFunctor {ℓ} (ITree E)
 (ITreeFunctor <$> f) t = t >>= (return ∘ f)
@@ -65,4 +65,3 @@ ITreeMonad = record {
   rawApplicative = ITreeApplicative
   ; _>>=_ = Bind._>>=_
   }
-
