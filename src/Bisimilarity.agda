@@ -1,4 +1,4 @@
-{-# OPTIONS --guardedness #-}
+{-# OPTIONS --cubical-compatible --safe --guardedness #-}
 
 module Bisimilarity where
 

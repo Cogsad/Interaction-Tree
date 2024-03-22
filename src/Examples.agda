@@ -1,4 +1,5 @@
-{-# OPTIONS --guardedness #-}
+{-# OPTIONS --cubical-compatible --safe --guardedness #-}
+
 module Examples where
 
 open import InteractionTree 
@@ -21,7 +22,7 @@ record Unit : Set where
   instance constructor tt
 
 
-data IO : Set → Set where
+data IO : Set → Set₁ where
   input : IO ℕ
   output : ℕ → IO Unit
 

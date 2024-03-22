@@ -1,4 +1,5 @@
-{-# OPTIONS --guardedness #-}
+{-# OPTIONS --cubical-compatible --safe --guardedness #-}
+
 module InteractionTree where
 
 open import Agda.Primitive
