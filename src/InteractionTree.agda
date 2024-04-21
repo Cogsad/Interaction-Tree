@@ -11,12 +11,12 @@ open import Effect.Applicative
 open import Effect.Monad
 
 mutual
-  data ITree {a b c : Level} (E : Set a → Set b) (R : Set c) : Set (lsuc a ⊔  b ⊔ c) where
+  data ITree {a b c : Level} (E : Set a → Set b) (R : Set c) : Set (lsuc (a ⊔ b ⊔ c)) where
     Ret : R → ITree E R
     Tau : ∞ITree E R → ITree E R
     Vis : ∀{A} → E A → (A → ∞ITree E R) → ITree E R
 
-  record ∞ITree {a b c : Level} (E : Set a → Set b) (R : Set c) : Set (lsuc a ⊔  b ⊔ c) where
+  record ∞ITree {a b c : Level} (E : Set a → Set b) (R : Set c) : Set (lsuc (a ⊔ b ⊔ c)) where
     constructor itree
     coinductive
     field
@@ -43,6 +43,9 @@ open Bind public
 return : A → ITree E A
 return x = Ret x
 
+
+_>>_ : ITree E A → ITree E B → ITree E B
+k >> m = k >>= λ _ → m
 trigger : E R → ITree E R
 trigger e = Vis e λ x → itree (Ret x)
 
